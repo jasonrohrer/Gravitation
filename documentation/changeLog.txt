@@ -1,0 +1,34 @@
+Version 4
+
+--Now builds against latest minorGems code.
+
+--Fixed compiler warnings for latest GCC versions.
+
+
+
+Version 3    2008-March-3
+
+(Thanks to Chris Hecker for pointing out that player-freeze during fade-out
+felt weird.)
+
+--Re-enabled player motion during game-end fade-out.
+
+--Added a 3-second title-screen freeze after fade-out to ensure that the player
+  knows that the game is really over (so that key presses during the fade-out
+  do not trigger a new game instantly).
+
+--Kiln now stops melting blocks (because fire is gone) during fade-out.
+
+
+
+Version 2    2008-February-29
+
+--Increased fade-out time at end of game.
+
+--Froze player during game-over fade-out.
+
+
+
+Version 1    2008-February-29
+
+--Initial release.

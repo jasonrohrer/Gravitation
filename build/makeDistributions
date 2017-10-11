@@ -1,0 +1,56 @@
+#!/bin/sh
+
+#
+# Modification History
+#
+# 2007-November-12   Jason Rohrer
+# Copied from Cultivation build.
+#
+
+
+if [ $# -lt 2 ] ; then
+   echo "Usage: $0 release_name unix_platform_name"
+   exit 1
+fi
+
+
+rm -rf unix
+rm -rf windows
+
+mkdir windows
+mkdir unix
+
+
+# work on unix tree first
+mkdir unix/Gravitation
+mkdir unix/Gravitation/graphics
+mkdir unix/Gravitation/music
+mkdir unix/Gravitation/settings
+
+cp ../documentation/Readme.txt unix/Gravitation/
+
+cp ../gameSource/graphics/*.tga unix/Gravitation/graphics
+cp ../gameSource/music/*.tga unix/Gravitation/music
+cp ../gameSource/settings/*.ini unix/Gravitation/settings
+
+
+# duplicate unix tree so far to make windows tree
+cp -r unix/Gravitation windows/
+
+cp ../gameSource/Gravitation unix/Gravitation/
+
+cp win32/Gravitation.exe win32/*.dll windows/Gravitation/
+
+cd unix
+tar cf "Gravitation_$1_$2.tar" Gravitation
+gzip "Gravitation_$1_$2.tar"
+
+
+
+cd ../windows
+zip -r "Gravitation_$1_Windows.zip" Gravitation
+
+
+
+
+

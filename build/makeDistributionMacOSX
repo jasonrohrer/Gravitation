@@ -1,0 +1,55 @@
+#!/bin/sh
+
+#
+# Modification History
+#
+# 2007-November-12   Jason Rohrer
+# Copied from Cultivation build.
+#
+
+
+if [ $# -lt 3 ] ; then
+   echo "Usage: $0 release_name unix_platform_name path_to_SDL.framework"
+   exit 1
+fi
+
+
+rm -rf mac
+
+mkdir mac
+
+mkdir mac/Gravitation
+mkdir mac/Gravitation/graphics
+mkdir mac/Gravitation/music
+mkdir mac/Gravitation/settings
+
+cp ../documentation/Readme.txt mac/Gravitation/
+
+cp ../gameSource/graphics/*.tga mac/Gravitation/graphics
+cp ../gameSource/music/*.tga mac/Gravitation/music
+cp ../gameSource/settings/*.ini mac/Gravitation/settings
+
+
+
+
+cp -r macOSX/Gravitation.app mac/Gravitation/Gravitation.app
+cp ../gameSource/Gravitation mac/Gravitation/Gravitation.app/Contents/MacOS
+
+rm -r mac/Gravitation/Gravitation.app/CVS
+rm -r mac/Gravitation/Gravitation.app/Contents/CVS
+rm -r mac/Gravitation/Gravitation.app/Contents/MacOS/CVS
+rm -r mac/Gravitation/Gravitation.app/Contents/Resources/CVS
+rm -r mac/Gravitation/Gravitation.app/Contents/Frameworks/CVS
+
+# install SDL framework
+cp -r $3 mac/Gravitation/Gravitation.app/Contents/Frameworks/
+
+cd mac
+tar cf "Gravitation_$1_$2.tar" Gravitation
+gzip "Gravitation_$1_$2.tar"
+
+
+
+
+
+

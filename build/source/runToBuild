@@ -1,0 +1,39 @@
+#!/bin/bash
+
+#
+# Modification History
+#
+# 2007-November-12    Jason Rohrer
+# Copied from Cultivation.
+#
+
+
+cd game5/gameSource
+chmod u+x ./configure
+./configure
+
+
+
+echo "Building Gravitation..."
+
+make
+
+
+
+cd ../..
+
+mkdir graphics
+mkdir music
+mkdir settings
+
+cp game5/gameSource/Gravitation ./Gravitation
+cp game5/documentation/Readme.txt .
+cp game5/gameSource/graphics/* ./graphics
+cp game5/gameSource/music/* ./music
+cp game5/gameSource/settings/* ./settings
+
+echo "Run Gravitation to play."
+
+
+
+

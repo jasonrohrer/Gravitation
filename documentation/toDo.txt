@@ -1,0 +1,131 @@
+X-Hair on fire during mania ?
+x-Music idea:  lots of tracks (6, maybe) where final, manic layers add melodies
+  that are dissonant with base tracks.
+x-Make sure struct/union-based pixel color access works on little-endian 
+  machines.
+X-Game end when time runs out
+X-Better transition to title at end... instant, for now?
+X-Mez only throws ball when you are standing on the ground near him.
+X-Mez disappears toward end of game (leaves ball behind)... or maybe if ignored
+  too long?  Detect when Mez off screen for a chance for him to disappear.
+X-Pushing animation frames for main character
+X-Better fire (generated) in kiln (layered sprites look good enough)
+X-Additive blending for fires (lighten only)
+x-Fix bug with partial prize-kiln alignment
+x-How to blend tile sets when map is pre-rendered?
+X-Idea:  time limit tied to fire dying down?  Motivation for time limit.
+X-NO Idea:  instant depression after a prize rises out of kiln?
+X-Update music player to allow selective muting and fade-in of tracks.
+x-Write music so that one track plays with depressed state, and all tracks
+  play together with manic state.
+x-Fix bug that can trap you under a frozen block if you land first.
+  (Is this still a problem?  I can't reproduce it.)
+X-Better map:  each section of map should highlight some problem/temptation
+  associated with mechanics:
+  x-Basics of a single prize (pushing it, etc.)
+  x-Getting a chain of prizes allows you to keep jumping higher and higher.
+  x-Long line of projects slower to push
+  x-Projects get in the way of your walking during catch with mez
+  x-You can get trapped down in a well after your mania wears off
+  x-Projects on top of other projects must be pushed off first (handled by
+    other sections.)
+  X-These next two are in map, but won't work until falling column bug is 
+    fixed.
+    x-Column of projects can block your access to mez until you can
+      jump high enough to get over the column
+    x-A column of 5 projects can completely seal you off from Mez for the
+      rest of the game.
+  x-Place where chain of prize-induced mania is necessary to keep jumping
+    higher.
+X-Round off error during jump causes jitter at apex of jump.
+X-Fix arrow flicker right when block slides off top of another block.
+x-Clean out old code (spouse, chests, hash tables, etc.)
+X-If you're hitting keys right before gameEnd/title, then the title screen
+  is only shown for a moment before the new game starts.
+  (Changed to quick-fade instead of instant fade, seems to help).
+X-Emotion can get "stuck" at 1 if you get a chain of prizes right in a row
+X-Falling down through a column of prizes makes them fall on top of each other
+  and land on top of each other.
+X-Optimize map loading?  Startup is slow (11 second startup).
+  Got down to 4 seconds.
+X-Add 1-pixel black bar between numbers and game image.
+X-Slow down base box-pushing rate
+X-Improve "mad" graphic to make it easier to see against sky.
+X-Make Mez more visible (flip background)
+Z-Fix lighting (due to sun in different position)
+  x-Kiln
+  x-Ash Pit
+  x-Tiles
+  x-Prize ice (and redo arrow)
+x-Base prize push rate even slower to make mania for prize pushing even more
+  valuable?  (And thus prizes that block you from mez even more of a problem?)
+  No... seems slow enough as-is, especially with a train of prizes.
+X-Increase game length so that we have more time to experience loss of mez at
+  end.  Try:  6 minute game, Mez gone for last 2 minutes, fire fades during 
+  last 1 minute.  An upcycle w/out mez takes 67 seconds... thus, current
+  timing doesn't let us experience natural mania w/out Mez.
+  Even this doesn't give you enough time post-Mez
+  Fixes?  7-minute game, with 3-minutes post-Mez?  Faster upswing? (33 sec?)
+  One problem is that down-swing, even after getting a single prize, is slow
+  (67 sec).  Maybe base downswing rate should be faster?  Mania short-lived?
+  Okay, a faster base down-swing feels better.
+  Tried faster upswing... no good, doesn't keep you "stuck" long enough
+  to make you sweat.  Want stuck to feel annoying.  DO NOT PANDER TO PLAYER.
+  Also, not enough time to explore all gameplay mechanics in a single game.
+  How about:  8 minute game.  Mez gone during last 3.  Fire dies during last
+  1?  Enough time for player to notice fire dying?
+  Even better:  fire visibly dies during last 4 minutes, but music fades during
+  last minute.
+X-Title?  Fire and Ashes?  Something better?  Look in DSM.
+  Fire and Ashes
+  Gravity
+  Gravitation
+  Pendulum
+  Parabola
+  The Law of Gravity
+  The Simple Law of Gravity
+  The Basic Law of Gravity
+
+  Currently like the title "Gravitation".  A simple word that everyone knows
+  and everyone can pronounce/spell.  Several layers of meaning (what goes up
+  must come down, true of the character both physcially and emotionally,
+  also the return back to home and the need for it, also the up-down-up-down
+  motion through the level, also the motion of the ball, which is what the
+  player experiences first upon starting the game).  So the player is thinking
+  about gravity when starting the game.  The first thing they see is this
+  ball-catching mini-game with the parabolic flight path of the ball... They
+  might think, "Okay... so this gravity game is about the flight of a ball?"
+  But after catching a few times, the view expands, and they jump upward to
+  get a star.  The star falls (again, through gavity), and then they start
+  noticing the additional layers of meaning.  Eventually, they notice that
+  "mood" is directly linked to the strength of gravity as it affects their
+  character... gravity is a metaphor for mood.
+
+X-Title screen graphic
+
+
+Fixed this stuff:
+
+X-General problem:  various themes don't fit together.  365-day timer?  So it's one year.  But what about the fact that prizes freeze as they fall?  Are we going to show seasonal changes in world graphics?  How would prizes freeze, and then need to be thawed, in summer?
+
+X-Okay, so make it 3 months (90 days) in winter...  Jan, Feb, March...  that works, but then why would Mez leave at the end?  Maybe he should leave only if you ignore him too much... like if you spend too much time up gathering prizes?
+
+X-Maybe he can leave at the end anyway...
+
+
+
+v1 release to do:
+
+x-Change name of target app
+x-Check last time for memory leaks.
+x-Create build directory tree
+x-Switch settings to fullscreen mode
+x-Readme
+x-Win32 build
+x-Source build
+x-Build mac Icon
+x-mac build
+x-Create a site meter
+x-Take a screen shot
+x-Post SF uploads
+x-Creator statement

@@ -1,0 +1,108 @@
+
+ROOT_PATH = ../..
+
+COMPILE = g++ ${PLATFORM_COMPILE_FLAGS} -Wall -Wwrite-strings -Wchar-subscripts -Wparentheses -g -I${ROOT_PATH} -c
+LINK = g++ -I${ROOT_PATH}
+
+
+
+
+
+
+MG_PATH = ${ROOT_PATH}/minorGems
+
+MINOR_GEMS_SOURCES = \
+${MG_PATH}/io/file/${PLATFORM_PATH}/Path${PLATFORM_NAME}.cpp \
+${MG_PATH}/util/stringUtils.cpp \
+${MG_PATH}/util/StringBufferOutputStream.cpp \
+${MG_PATH}/crypto/hashes/sha1.cpp \
+${MG_PATH}/formats/encodingUtils.cpp \
+${MG_PATH}/util/SettingsManager.cpp \
+${MG_PATH}/system/${TIME_PLATFORM_PATH}/Time${TIME_PLATFORM_NAME}.cpp \
+${MG_PATH}/system/${PLATFORM_PATH}/Thread${PLATFORM_NAME}.cpp \
+
+
+MINOR_GEMS_OBJECTS = ${MINOR_GEMS_SOURCES:.cpp=.o}
+
+
+
+GAME_SOURCES = \
+game.cpp \
+blowUp.cpp \
+World.cpp \
+map.cpp \
+particles.cpp \
+Gradient.cpp \
+common.cpp \
+score.cpp \
+musicPlayer.cpp \
+Timbre.cpp \
+Envelope.cpp \
+
+GAME_GRAPHICS = \
+graphics/map.tga \
+graphics/tileSet.tga \
+graphics/background.tga \
+graphics/characterSprite.tga \
+graphics/mezSprite.tga \
+graphics/ball.tga \
+graphics/prize.tga \
+graphics/prizeOrb.tga \
+graphics/numeralsBlack.tga \
+graphics/numerals.tga \
+graphics/numeralsYellow.tga \
+graphics/heart.tga \
+graphics/mad.tga \
+graphics/kiln.tga \
+graphics/kilnFire.tga \
+graphics/kilnSmoke.tga \
+graphics/kilnAshPit.tga \
+graphics/title.tga \
+music/music.tga \
+
+
+
+GAME_OBJECTS = ${GAME_SOURCES:.cpp=.o}
+
+# auto-generate dependency list
+DEPENDENCY_FILE = Makefile.dependencies
+
+
+all: Gravitation ${GAME_GRAPHICS} ${DEPENDENCY_FILE}
+
+clean:  
+	rm *.o graphics/*.tga music/*.tga Gravitation ${DEPENDENCY_FILE}
+
+Gravitation: ${GAME_OBJECTS} ${MINOR_GEMS_OBJECTS}
+	${LINK} -o Gravitation ${GAME_OBJECTS} ${MINOR_GEMS_OBJECTS} ${PLATFORM_LINK_FLAGS}
+
+testMusicPlayer: ${GAME_OBJECTS} testMusicPlayer.o common.o Timbre.o Envelope.o ${MINOR_GEMS_OBJECTS}
+	${LINK} -o testMusicPlayer musicPlayer.o testMusicPlayer.o common.o Timbre.o Envelope.o ${MINOR_GEMS_OBJECTS} ${PLATFORM_LINK_FLAGS}
+
+
+
+# build the dependency file
+${DEPENDENCY_FILE}: ${MINOR_GEMS_SOURCES} ${GAME_SOURCES}
+	rm -f ${DEPENDENCY_FILE}
+	${COMPILE} -MM ${MINOR_GEMS_SOURCES} ${GAME_SOURCES} >> ${DEPENDENCY_FILE}
+
+include ${DEPENDENCY_FILE}
+
+
+
+# 
+# Generic:
+#
+# Map all .cpp C++ and C files into .o object files
+#
+# $@   represents the name.o file
+# $<   represents the name.cpp file
+#
+.cpp.o:
+	${COMPILE} -o $@ $<
+.c.o:
+	${COMPILE} -o $@ $<
+graphics/%.tga: %.png
+	convert $< $@
+music/%.tga: %.png
+	convert $< $@
